@@ -33,6 +33,21 @@ wrangler deploy
 풀거나 Cloudflare 대시보드의 Workers Routes에서 연결하세요. `workers.dev`는
 여러 사용자가 공유하는 도메인이라 피하는 편이 좋습니다.
 
+### 공개 레포 + CI 배포 (database_id를 커밋하지 않기)
+
+`database_id`는 비밀값이 아니라 그냥 커밋해도 되지만, 공개 레포에 두기 싫으면
+`wrangler.toml`에는 `PASTE_YOUR_D1_DATABASE_ID` 플레이스홀더를 그대로 두고 배포 때
+환경변수로 치환합니다. 루트의 `npm run deploy`가 그 치환 + `wrangler deploy`를 합니다:
+
+- Cloudflare 대시보드 → Workers 프로젝트 → Settings → Build → Variables 에
+  `D1_DATABASE_ID`(= `wrangler d1 create` 가 출력한 uuid)를 추가.
+- Deploy command 를 `npm run deploy` 로 설정.
+- 스키마는 CI 대신 대시보드 → D1 → gtrack → **Console** 탭에 `schema.sql` 내용을
+  붙여넣어 한 번 실행하면 됩니다(로컬 wrangler 불필요).
+
+로컬에서 `npm run deploy` 를 돌리면 `wrangler.toml` 이 그 자리에서 수정되니
+(`D1_DATABASE_ID` 가 설정돼 있어야 함) 커밋하지 마세요. CI 체크아웃은 1회성이라 무해합니다.
+
 ## 2. 대시보드 보호 (Cloudflare Access)
 
 Cloudflare Zero Trust → Access → Applications 에서 `track.내도메인/` 과
