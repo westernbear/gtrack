@@ -1,0 +1,15 @@
+name = "gtrack"
+main = "src/worker.ts"
+compatibility_date = "2026-10-01"
+
+# After `wrangler d1 create gtrack`, paste the printed database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "gtrack"
+database_id = "PASTE_YOUR_D1_DATABASE_ID"
+
+# Custom subdomain → Worker route. Replace with your zone's hostname.
+# routes = [{ pattern = "track.example.com", custom_domain = true }]
+
+# INGEST_TOKEN is a secret, not a var:
+#   wrangler secret put INGEST_TOKEN

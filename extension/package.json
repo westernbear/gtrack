@@ -1,0 +1,14 @@
+{
+  "name": "gtrack-extension",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/content.src.js --bundle --outfile=dist/content.js --format=iife --target=chrome110"
+  },
+  "dependencies": {
+    "@inboxsdk/core": "^2.2.30"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

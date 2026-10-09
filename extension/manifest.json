@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "gtrack",
+  "version": "0.1.0",
+  "description": "Gmail read tracking (personal).",
+  "permissions": ["storage"],
+  "host_permissions": ["https://mail.google.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["dist/content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
