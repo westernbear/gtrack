@@ -1,8 +1,0 @@
-{
-  "name": "gtrack",
-  "private": true,
-  "scripts": {
-    "deploy": "sed -i \"s|PASTE_YOUR_D1_DATABASE_ID|${D1_DATABASE_ID}|\" wrangler.toml && npx wrangler deploy",
-    "test": "node --experimental-strip-types src/lib.test.ts"
-  }
-}
